@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.spdd.dao.GoodsMapper">
+	
+	<select id="selectById" resultType="Goods">
+		SELECT * FROM goods WHERE id=#{id}
+	</select>
+	
+	<select id="selectByDistrict" resultType="Goods">
+		SELECT * FROM goods where district=#{district}
+	</select>
+	
+	<update id="update" parameterType="Goods">
+		update goods
+		<trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+			<if test="goodsName != null">goodsName=#{goodsName},</if>
+			<if test="price != null">price=#{price},</if>
+			<if test="counts != null">counts=#{counts},</if>
+			<if test="status != null">status=#{status},</if>
+		 </trim>
+	</update>
+	
+</mapper>
